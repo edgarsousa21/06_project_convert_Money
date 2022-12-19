@@ -36,10 +36,12 @@ const convertValues = () => {
     }
 
     if (select.value === 'Bitcoin') {
+        currencyValueText.innerHTML = (inputReais / bitcoin)
 
-        currencyValueText.innerHTML = new Intl.NumberFormat('pt-BR',
-            { style: 'currency', currency: 'BTC' }
-        ).format(inputReais / bitcoin)
+
+        // currencyValueText.innerHTML = new Intl.NumberFormat('pt-BR',
+        //     { style: 'currency', currency: 'BTC' }
+        // ).format(inputReais / bitcoin)
     }
 
     realValueText.innerHTML = new Intl.NumberFormat('pt-BR',
