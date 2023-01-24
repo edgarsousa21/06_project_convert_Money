@@ -22,9 +22,9 @@ const convertValues = async () => {
     console.log(data)
     const dolar = data.USDBRL.high
     const euro = data.EURBRL.high
-    const bitcoin = data.BTCBRL.high * 1000
+    const bitcoin = data.BTCBRL.high*1000
 
-
+    
     realValueText.innerHTML = inputReais
 
     // currencyValueText.innerHTML = inputReais / dolar
@@ -57,7 +57,11 @@ const convertValues = async () => {
         { style: 'currency', currency: 'BRL' }
     ).format(inputReais)
 
+
+
+
 }
+
 
 changeCurrency = () => {
     const currencyName = document.getElementById('currency-name')
