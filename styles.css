@@ -9,7 +9,8 @@
 }
 
 body {
-    background-color: #E5E5E5;
+    background-image: url(./assets/space.jpg);
+    /* background-color: #E5E5E5; */
     display: flex;
     justify-content: center;
     align-items: center;
