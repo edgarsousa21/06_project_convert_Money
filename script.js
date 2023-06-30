@@ -1,87 +1,258 @@
-// Por exemplo, para inserir o símbolo de moeda do euro, 
-// mantenha pressionada a tecla ALT e pressione 0128 no teclado numérico.
 
-// new Intl.NumberFormat('en-US',
-//     {style: 'currency', currency: 'USD' }
-//     ).format(money)
 
 const button = document.getElementById('convert-button')
-const select = document.getElementById('currency-select')
+const selectOne = document.getElementById('current-select-one')
+const selectTwo = document.getElementById('currency-select-two')
 
-// const dolar = 5.31
-// const euro = 5.64
-// const bitcoin = 88878.03
-//AXIOS - BIBLIOTECA (USAR MAIS PRA FRENTE)
+
 const convertValues = async () => {
-    const inputReais = document.getElementById('input-real').value
-    const realValueText = document.getElementById('real-value-text')
-    const currencyValueText = document.getElementById('currency-value-text')
+    const inputSelectOne = document.getElementById('input-select-one').value
+    const currencyNameOne = document.getElementById('currency-name-one')
+    const currencyNameTwo = document.getElementById('currency-name-Two')
+    const currencyValueTextOne = document.getElementById('currency-value-text-one')
+    const currencyValueTextTwo = document.getElementById('currency-value-text-two')
 
     // async await
     const data = await fetch('https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL').then(response => response.json())
     console.log(data)
-    const dolar = data.USDBRL.high
-    const euro = data.EURBRL.high
-    const bitcoin = data.BTCBRL.high
 
-    
-    realValueText.innerHTML = inputReais
 
-    // currencyValueText.innerHTML = inputReais / dolar
-    if (select.value === 'US$ Dólar americano') {
+    const dolar = (Number(data.USDBRL.low) + Number(data.USDBRL.high)) / 2
+    const euro = (Number(data.EURBRL.low) + Number(data.EURBRL.high)) / 2
+    const bitcoin = (Number(data.BTCBRL.low) + Number(data.BTCBRL.high)) / 2
 
-        currencyValueText.innerHTML = new Intl.NumberFormat('en-US',
-            { style: 'currency', currency: 'USD' }
-        ).format(inputReais / dolar)
+
+
+    realToCurrencys() // CONVERTE REAL PARA OUTRAS MOEDAS
+    dolarToCurrencys() // CONVERTE DOLAR PARA OUTRAS MOEDAS
+    euroToCurrencys() // CONVERTE EURO PARA OUTRAS MOEDAS
+    equalCurrencys() // SE A PRIMEIRA MOEDA FOR IGUAL A SEGUNDA, O VALOR SERÁ O MESMO.
+
+    function equalCurrencys() {
+        if (selectOne.value === 'real' && selectTwo.value === 'real') {
+            currencyValueTextOne.innerHTML = new Intl.NumberFormat('pt-BR',
+                { style: 'currency', currency: 'BRL' }
+            ).format(inputSelectOne)
+
+            currencyValueTextTwo.innerHTML = new Intl.NumberFormat('pt-BR',
+                { style: 'currency', currency: 'BRL' }
+            ).format(inputSelectOne)
+
+        }// REAL REAL
+
+        if (selectOne.value === 'dolar' && selectTwo.value === 'dolar') {
+            currencyValueTextOne.innerHTML = new Intl.NumberFormat('en-US',
+                { style: 'currency', currency: 'USD' }
+            ).format(inputSelectOne)
+
+            currencyValueTextTwo.innerHTML = new Intl.NumberFormat('en-US',
+                { style: 'currency', currency: 'USD' }
+            ).format(inputSelectOne)
+
+        }// DOLAR DOLAR
+
+        if (selectOne.value === 'euro' && selectTwo.value === 'euro') {
+            currencyValueTextOne.innerHTML = new Intl.NumberFormat('de-DE',
+                { style: 'currency', currency: 'EUR' }
+            ).format(inputSelectOne)
+
+            currencyValueTextTwo.innerHTML = new Intl.NumberFormat('de-DE',
+                { style: 'currency', currency: 'EUR' }
+            ).format(inputSelectOne)
+
+        }// EURO EURO
+
+        if (selectOne.value === 'bitcoin' && selectTwo.value === 'bitcoin') {
+            currencyValueTextOne.innerHTML = new Intl.NumberFormat('BTC',
+             { style: 'currency', currency: 'BTC' }
+            ).format(inputSelectOne)
+
+
+            currencyValueTextTwo.innerHTML = new Intl.NumberFormat('BTC',
+            { style: 'currency', currency: 'BTC' }
+           ).format(inputSelectOne)
+
+
+        }// BITCOIN BITCOIN
+
+
+
 
     }
 
-    if (select.value === '€ Euro') {
+    function realToCurrencys() {
+        if (selectOne.value === 'real' && selectTwo.value === 'dolar') {
+            currencyValueTextOne.innerHTML = new Intl.NumberFormat('pt-BR',
+                { style: 'currency', currency: 'BRL' }
+            ).format(inputSelectOne)
 
-        currencyValueText.innerHTML = new Intl.NumberFormat('de-DE',
-            { style: 'currency', currency: 'EUR' }
-        ).format(inputReais / euro)
+            currencyValueTextTwo.innerHTML = new Intl.NumberFormat('en-US',
+                { style: 'currency', currency: 'USD' }
+            ).format(inputSelectOne / dolar)
 
+        }// REAL PARA DOLAR
+
+        if (selectOne.value === 'dolar' && selectTwo.value === 'real') {
+            currencyValueTextOne.innerHTML = new Intl.NumberFormat('en-US',
+                { style: 'currency', currency: 'USD' }
+            ).format(inputSelectOne)
+
+            currencyValueTextTwo.innerHTML = new Intl.NumberFormat('pt-BR',
+                { style: 'currency', currency: 'BRL' }
+            ).format(inputSelectOne * dolar)
+        }// DOLAR PARA REAL
+
+        if (selectOne.value === 'real' && selectTwo.value === 'euro') {
+            currencyValueTextOne.innerHTML = new Intl.NumberFormat('pt-BR',
+                { style: 'currency', currency: 'BRL' }
+            ).format(inputSelectOne)
+
+            currencyValueTextTwo.innerHTML = new Intl.NumberFormat('de-DE',
+                { style: 'currency', currency: 'EUR' }
+            ).format(inputSelectOne / euro)
+
+        }// REAL PARA EURO
+
+        if (selectOne.value === 'euro' && selectTwo.value === 'real') {
+            currencyValueTextOne.innerHTML = new Intl.NumberFormat('de-DE',
+                { style: 'currency', currency: 'EUR' }
+            ).format(inputSelectOne)
+
+            currencyValueTextTwo.innerHTML = new Intl.NumberFormat('pt-BR',
+                { style: 'currency', currency: 'BRL' }
+            ).format(inputSelectOne * euro)
+        }// EURO PARA REAL 
+
+        if (selectOne.value === 'real' && selectTwo.value === 'bitcoin') {
+            currencyValueTextOne.innerHTML = new Intl.NumberFormat('pt-BR',
+                { style: 'currency', currency: 'BRL' }
+            ).format(inputSelectOne)
+
+            currencyValueTextTwo.innerHTML = `${(inputSelectOne / bitcoin).toFixed(7)}`
+
+        }// REAL PARA BITCOIN
+
+        if (selectOne.value === 'bitcoin' && selectTwo.value === 'real') {
+            currencyValueTextOne.innerHTML = `${(inputSelectOne)}`
+
+            currencyValueTextTwo.innerHTML = new Intl.NumberFormat('pt-BR',
+                { style: 'currency', currency: 'BRL' }
+            ).format(inputSelectOne * bitcoin)
+        }// BITCOIN PARA REAL  
     }
 
-    if (select.value === 'Bitcoin') {
+    function dolarToCurrencys() {
+        if (selectOne.value === 'dolar' && selectTwo.value === 'euro') {
+            currencyValueTextOne.innerHTML = new Intl.NumberFormat('en-US',
+                { style: 'currency', currency: 'USD' }
+            ).format(inputSelectOne)
 
-        currencyValueText.innerHTML = `${(inputReais / bitcoin).toFixed(7)}`
+            currencyValueTextTwo.innerHTML = new Intl.NumberFormat('de-DE',
+                { style: 'currency', currency: 'EUR' }
+            ).format(inputSelectOne * dolar / euro)
+        }// DOLAR PARA EURO
 
-        // currencyValueText.innerHTML = new Intl.NumberFormat('BTC',
-        //     { style: 'currency', currency: 'BTC' }
-        // ).format(inputReais / bitcoin)
+        if (selectOne.value === 'euro' && selectTwo.value === 'dolar') {
+            currencyValueTextOne.innerHTML = new Intl.NumberFormat('de-DE',
+                { style: 'currency', currency: 'EUR' }
+            ).format(inputSelectOne)
+
+            currencyValueTextTwo.innerHTML = new Intl.NumberFormat('en-US',
+                { style: 'currency', currency: 'USD' }
+            ).format(inputSelectOne * euro / dolar)
+        }// EURO PARA DOLAR
+
+        if (selectOne.value === 'dolar' && selectTwo.value === 'bitcoin') {
+            currencyValueTextOne.innerHTML = new Intl.NumberFormat('en-US',
+                { style: 'currency', currency: 'USD' }
+            ).format(inputSelectOne)
+
+            currencyValueTextTwo.innerHTML = `${(inputSelectOne * dolar / bitcoin).toFixed(7)}`
+        }// DOLAR PARA BITCOIN
+
+        if (selectOne.value === 'bitcoin' && selectTwo.value === 'dolar') {
+            currencyValueTextOne.innerHTML = `${(inputSelectOne)}`
+
+            currencyValueTextTwo.innerHTML = new Intl.NumberFormat('en-US',
+                { style: 'currency', currency: 'USD' }
+            ).format(inputSelectOne * bitcoin / dolar)
+        }// BITCOIN PARA DOLAR
     }
 
-    realValueText.innerHTML = new Intl.NumberFormat('pt-BR',
-        { style: 'currency', currency: 'BRL' }
-    ).format(inputReais)
+    function euroToCurrencys() {
+        if (selectOne.value === 'euro' && selectTwo.value === 'bitcoin') {
+            currencyValueTextOne.innerHTML = new Intl.NumberFormat('de-DE',
+                { style: 'currency', currency: 'EUR' }
+            ).format(inputSelectOne)
 
+            currencyValueTextTwo.innerHTML = `${(inputSelectOne * euro / bitcoin).toFixed(7)}`
+        }// EURO PARA BITCOIN
 
+        if (selectOne.value === 'bitcoin' && selectTwo.value === 'euro') {
+            currencyValueTextOne.innerHTML = `${(inputSelectOne)}`
 
-
+            currencyValueTextTwo.innerHTML = new Intl.NumberFormat('de-DE',
+                { style: 'currency', currency: 'EUR' }
+            ).format(inputSelectOne * bitcoin / euro)
+        }// BITCOIN PARA EURO
+    }
+   
 }
 
+changeCurrencyOne = () => {
+    const currencyNameOne = document.getElementById('currency-name-one')
+    const currencyImgOne = document.getElementById('currency-img-one')
 
-changeCurrency = () => {
-    const currencyName = document.getElementById('currency-name')
-    const currencyImg = document.getElementById('currency-img')
-    if (select.value === 'US$ Dólar americano') {
-        currencyName.innerHTML = 'Dólar Americano'
-        currencyImg.src = "./assets/estados_unidos.png"
+    if (selectOne.value === 'real') {
+        currencyNameOne.innerHTML = 'Real Brasileiro'
+        currencyImgOne.src = "./assets/brasil.png"
     }
 
-    if (select.value === '€ Euro') {
-        currencyName.innerHTML = 'Euro'
-        currencyImg.src = "./assets/euro.png"
+    if (selectOne.value === 'dolar') {
+        currencyNameOne.innerHTML = 'Dólar Americano'
+        currencyImgOne.src = "./assets/estados_unidos.png"
     }
 
-    if (select.value === 'Bitcoin') {
-        currencyName.innerHTML = 'Bitcoin'
-        currencyImg.src = "./assets/bitcoin.png"
+    if (selectOne.value === 'euro') {
+        currencyNameOne.innerHTML = 'Euro'
+        currencyImgOne.src = "./assets/euro.png"
+    }
+
+    if (selectOne.value === 'bitcoin') {
+        currencyNameOne.innerHTML = 'Bitcoin'
+        currencyImgOne.src = "./assets/bitcoin.png"
     }
     convertValues()
 }
 
+changeCurrencyTwo = () => {
+    const currencyNameTwo = document.getElementById('currency-name-two')
+    const currencyImgTwo = document.getElementById('currency-img-two')
+
+    if (selectTwo.value === 'real') {
+        currencyNameTwo.innerHTML = 'Real Brasileiro'
+        currencyImgTwo.src = "./assets/brasil.png"
+    }
+
+    if (selectTwo.value === 'dolar') {
+        currencyNameTwo.innerHTML = 'Dólar Americano'
+        currencyImgTwo.src = "./assets/estados_unidos.png"
+    }
+
+    if (selectTwo.value === 'euro') {
+        currencyNameTwo.innerHTML = 'Euro'
+        currencyImgTwo.src = "./assets/euro.png"
+    }
+
+    if (selectTwo.value === 'bitcoin') {
+        currencyNameTwo.innerHTML = 'Bitcoin'
+        currencyImgTwo.src = "./assets/bitcoin.png"
+    }
+    convertValues()
+}
+
+
+
 button.addEventListener('click', convertValues)
-select.addEventListener('change', changeCurrency)
+selectOne.addEventListener('change', changeCurrencyOne)
+selectTwo.addEventListener('change', changeCurrencyTwo)

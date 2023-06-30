@@ -25,39 +25,43 @@
         <main>
             <label>
                 Converter <b>de</b>
-                <select>
-                    <option>R$ Real brasileiro</option>
+                <select id="current-select-one">
+                    <option value="real">R$ Real brasileiro</option>
+                    <option value="dolar">US$ Dólar americano</option>
+                    <option value="euro">€ Euro</option>
+                    <option value="bitcoin">Bitcoin</option>
                 </select>
             </label>
             <!-- ================================================================================================ -->
             <label>
                 Converter <b>para</b>
-                <select id="currency-select">
-                    <option>US$ Dólar americano</option>
-                    <option>€ Euro</option>
-                    <option>Bitcoin</option>
+                <select id="currency-select-two">
+                    <option value="real">R$ Real brasileiro</option>
+                    <option value="dolar">US$ Dólar americano</option>
+                    <option value="euro">€ Euro</option>
+                    <option value="bitcoin">Bitcoin</option>
                 </select>
             </label>
             <!-- ====================================================================================================== -->
             <label>
                 Valor
-                <input id="input-real" placeholder="R$ 10.000,00">
+                <input id="input-select-one" placeholder="R$ 10.000,00">
             </label>
             <button id="convert-button" type="button">Converter</button>
 
             <section>
-                <div class="currency-container"> 
-                    <img src="./assets/brasil.png" alt="bandeira-brasil"/>
-                    <p class="currency-name">Real</p>
-                    <p id="real-value-text" class="currency-value">R$ 10.000,00</p>
+                <div id="currency-container-one" class="currency-container"> 
+                    <img id="currency-img-one" src="./assets/brasil.png" alt="bandeira-brasil"/>
+                    <p class="currency-name" id="currency-name-one">Real Brasileiro</p>
+                    <p id="currency-value-text-one" class="currency-value">R$ 0.000,00</p>
                 </div>
 
                 <img class="arrow-image" src="./assets/vector.png" alt="seta">
 
-                <div class="currency-container">
-                    <img id="currency-img" src="./assets/estados_unidos.png" alt="bandeira-pais-conversão"/>
-                    <p class="currency-name" id="currency-name">Dólar Americano</p>
-                    <p id="currency-value-text" class="currency-value">U$$ 2.000,00</p>
+                <div id="currency-container-two" class="currency-container">
+                    <img id="currency-img-two" src="./assets/brasil.png" alt="bandeira-pais-conversão"/>
+                    <p class="curency-name" id="currency-name-two">Real Brasileiro</p>
+                    <p id="currency-value-text-two" class="currency-value">R$ 0.000,00</p>
                 </div>
             </section>
 
