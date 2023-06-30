@@ -64,13 +64,13 @@ const convertValues = async () => {
 
         if (selectOne.value === 'bitcoin' && selectTwo.value === 'bitcoin') {
             currencyValueTextOne.innerHTML = new Intl.NumberFormat('BTC',
-             { style: 'currency', currency: 'BTC' }
+                { style: 'currency', currency: 'BTC' }
             ).format(inputSelectOne)
 
 
             currencyValueTextTwo.innerHTML = new Intl.NumberFormat('BTC',
-            { style: 'currency', currency: 'BTC' }
-           ).format(inputSelectOne)
+                { style: 'currency', currency: 'BTC' }
+            ).format(inputSelectOne)
 
 
         }// BITCOIN BITCOIN
@@ -128,12 +128,12 @@ const convertValues = async () => {
                 { style: 'currency', currency: 'BRL' }
             ).format(inputSelectOne)
 
-            currencyValueTextTwo.innerHTML = `${(inputSelectOne / bitcoin).toFixed(7)}`
+            currencyValueTextTwo.innerHTML = `BTC ${(inputSelectOne / bitcoin).toFixed(7)}`
 
         }// REAL PARA BITCOIN
 
         if (selectOne.value === 'bitcoin' && selectTwo.value === 'real') {
-            currencyValueTextOne.innerHTML = `${(inputSelectOne)}`
+            currencyValueTextOne.innerHTML = `BTC ${(inputSelectOne)}`
 
             currencyValueTextTwo.innerHTML = new Intl.NumberFormat('pt-BR',
                 { style: 'currency', currency: 'BRL' }
@@ -167,11 +167,11 @@ const convertValues = async () => {
                 { style: 'currency', currency: 'USD' }
             ).format(inputSelectOne)
 
-            currencyValueTextTwo.innerHTML = `${(inputSelectOne * dolar / bitcoin).toFixed(7)}`
+            currencyValueTextTwo.innerHTML = `BTC ${(inputSelectOne * dolar / bitcoin).toFixed(7)}`
         }// DOLAR PARA BITCOIN
 
         if (selectOne.value === 'bitcoin' && selectTwo.value === 'dolar') {
-            currencyValueTextOne.innerHTML = `${(inputSelectOne)}`
+            currencyValueTextOne.innerHTML = `BTC ${(inputSelectOne)}`
 
             currencyValueTextTwo.innerHTML = new Intl.NumberFormat('en-US',
                 { style: 'currency', currency: 'USD' }
@@ -185,18 +185,18 @@ const convertValues = async () => {
                 { style: 'currency', currency: 'EUR' }
             ).format(inputSelectOne)
 
-            currencyValueTextTwo.innerHTML = `${(inputSelectOne * euro / bitcoin).toFixed(7)}`
+            currencyValueTextTwo.innerHTML = `BTC ${(inputSelectOne * euro / bitcoin).toFixed(7)}`
         }// EURO PARA BITCOIN
 
         if (selectOne.value === 'bitcoin' && selectTwo.value === 'euro') {
-            currencyValueTextOne.innerHTML = `${(inputSelectOne)}`
+            currencyValueTextOne.innerHTML = `BTC ${(inputSelectOne)}`
 
             currencyValueTextTwo.innerHTML = new Intl.NumberFormat('de-DE',
                 { style: 'currency', currency: 'EUR' }
             ).format(inputSelectOne * bitcoin / euro)
         }// BITCOIN PARA EURO
     }
-   
+
 }
 
 changeCurrencyOne = () => {

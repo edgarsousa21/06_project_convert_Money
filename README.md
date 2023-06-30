@@ -8,7 +8,10 @@
 <br>
 <br>
 
-<h2>Conversor da moeda de Real 'R$' para Dólar Americano: 'US$', Euro: € e Bitcoin. <br><br> Clique na Imagem para carregar o Programa:</h2>
+<h2>Conversor da moeda de Real 'R$' para Dólar Americano: 'US$', Euro: € e Bitcoin. <br><br><a href ="https://project-converter-money.netlify.app/" Target ="_blank">Clique Aqui </a>para carregar o Programa:</h2>
+
+<img src="./assets/layout01.png"/><br>
+<img src="./assets/layout02.png"/><br>
 
 
-<a href = "https://edgarsousa21.github.io/project_convert_Money/" Target = "_blank"><img src = "https://github.com/edgarsousa21/06_project_convert_Money/blob/master/assets/currencyConverter.png?raw=true"/></a>
+

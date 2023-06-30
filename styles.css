@@ -20,7 +20,7 @@ body {
 .container {
     width: 375px;
     /* height: 766px;     */
-    background-color: #F4F4F4;   
+    background-color: #F4F4F4;
 }
 
 header {
@@ -33,7 +33,7 @@ header {
 
 h1 {
     font-size: 24px;
-    color: #F4F4F4;    
+    color: #F4F4F4;
 }
 
 main {
@@ -110,7 +110,7 @@ section {
     gap: 15px;
 }
 
-.currency-container {   
+.currency-container {
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -123,11 +123,16 @@ section {
     color: #777777;
 }
 
-.currency-value {    
+.currency-value {
     font-weight: bold;
-    font-size: 20px;  
+    font-size: 20px;
     align-items: center;
     color: #1B83E2;
 
 }
 
+p#copy-edgar {
+    text-align: center;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
