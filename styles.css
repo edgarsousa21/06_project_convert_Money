@@ -9,18 +9,31 @@
 }
 
 body {
-    background-image: url(./assets/space.jpg);
+    background-image: url(./assets/market.webp);
+    background-size: cover;
     /* background-color: #E5E5E5; */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 127vh;
+    /* height: 127vh; */
+    min-height: 100vh;
+}
+
+
+img.logo {
+    display: block;
+    width: 300px;
+    height: 300px;
+    margin-top:20px;
 }
 
 .container {
     width: 375px;
-    /* height: 766px;     */
-    background-color: #F4F4F4;
+    background-color: #F4F4F4; 
+    background-color: yellow;     
+    margin-bottom: 20px;    
+    
 }
 
 header {
